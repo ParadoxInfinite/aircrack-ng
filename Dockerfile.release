@@ -1,29 +1,34 @@
-FROM kalilinux/kali-rolling AS builder
+# hadolint ignore=DL3007
+FROM kalilinux/kali-rolling:latest AS builder
 
 # https://docs.github.com/en/actions/learn-github-actions/environment-variables#default-environment-variables
 # Tag name
 ARG GITHUB_REF_NAME 
 
 # Install dependencies for building
+# hadolint ignore=DL3008
 RUN apt-get update \
  && export DEBIAN_FRONTEND=noninteractive \
  && apt-get -y install --no-install-recommends \
       build-essential autoconf automake libtool pkg-config libnl-3-dev libnl-genl-3-dev libssl-dev \
 	  ethtool shtool rfkill zlib1g-dev libpcap-dev libsqlite3-dev libpcre3-dev libhwloc-dev \
 	  libcmocka-dev hostapd wpasupplicant tcpdump screen iw usbutils expect gawk bear \
-	  libtinfo5 python3-pip git
+	  libtinfo5 python3-pip git && \
+	  	rm -rf /var/lib/apt/lists/*
 
 # Create git archive
 RUN mkdir -p /aircrack-ng/git /aircrack-ng/archive /output
 COPY . /aircrack-ng/git
-RUN cd /aircrack-ng/git && \
-    git archive --format=tar ${GITHUB_REF_NAME} \
+WORKDIR /aircrack-ng/git
+# hadolint ignore=DL4006,SC3040
+RUN set -o pipefail && \
+	git archive --format=tar ${GITHUB_REF_NAME} \
         | tar -xf - --directory /aircrack-ng/archive
 
 # Build Aircrack-ng
+WORKDIR /aircrack-ng/archive
 RUN set -x \
- && cd /aircrack-ng/archive && \
-	make distclean || : && \
+ && make distclean || : && \
 	autoreconf -vif && \
 	set -e; \
 		./configure --with-experimental --with-ext-scripts --enable-maintainer-mode --without-opt --prefix=/usr && \
@@ -32,14 +37,16 @@ RUN set -x \
 		make install DESTDIR=/output
 
 # Stage 2
-FROM kalilinux/kali-rolling
+# hadolint ignore=DL3007
+FROM kalilinux/kali-rolling:latest
 
 COPY --from=builder /output/usr /usr
 
 # Install dependencies
+# hadolint ignore=DL3008
 RUN set -x \
- && apt update && \
-	apt -y install --no-install-recommends \
+ && apt-get update && \
+	apt-get -y install --no-install-recommends \
 		libsqlite3-0 libssl3 hwloc libpcre3 libnl-3-200 libnl-genl-3-200 iw usbutils pciutils \
 		iproute2 ethtool kmod wget ieee-data python3 python3-graphviz rfkill && \
 	rm -rf /var/lib/apt/lists/* && \
