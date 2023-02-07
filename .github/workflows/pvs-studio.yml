@@ -7,16 +7,79 @@ on:
   push:
     branches: [ master ]
     paths-ignore:
+      - apparmor/**
       - contrib/**
       - manpages/**
       - patches/**
+      - '.devcontainer/**'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/alpine.yml'
+      - '.github/workflows/coverity.yml'
+      - '.github/workflows/docker.yml'
+      - '.github/workflows/docker-release.yml'
+      - '.github/workflows/dragonflybsd.yml'
+      - '.github/workflows/freebsd.yml'
+      - '.github/workflows/kali.yml'
+      - '.github/workflows/linux.yml'
+      - '.github/workflows/linux-pcre.yml'
+      - '.github/workflows/macos.yml'
+      - '.github/workflows/netbsd.yml'
+      - '.github/workflows/openbsd.yml'
+      - '.github/workflows/windows.yml'
+      - '.vscode/**'
+      - '.gitignore'
+      - '.pre-commit-config.yaml'
+      - 'AC_VERSION.in'
+      - 'AUTHORS'
+      - 'centos_autotools.sh'
+      - 'ChangeLog'
+      - 'docker_package_install.sh'
+      - 'Dockerfile'
+      - 'Dockerfile.release'
+      - 'INSTALLING'
+      - 'LICENSE'
+      - 'LICENSE.OpenSSL'
+      - 'README'
+      - 'README.md'
+      - 'SECURITY.md'
 
   pull_request:
     branches: [ master ]
     paths-ignore:
+      - apparmor/**
       - contrib/**
       - manpages/**
       - patches/**
+      - '.devcontainer/**'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/coverity.yml'
+      - '.github/workflows/docker.yml'
+      - '.github/workflows/docker-release.yml'
+      - '.github/workflows/dragonflybsd.yml'
+      - '.github/workflows/freebsd.yml'
+      - '.github/workflows/kali.yml'
+      - '.github/workflows/linux.yml'
+      - '.github/workflows/linux-pcre.yml'
+      - '.github/workflows/macos.yml'
+      - '.github/workflows/netbsd.yml'
+      - '.github/workflows/openbsd.yml'
+      - '.github/workflows/windows.yml'
+      - '.vscode/**'
+      - '.gitignore'
+      - '.pre-commit-config.yaml'
+      - 'AC_VERSION.in'
+      - 'AUTHORS'
+      - 'centos_autotools.sh'
+      - 'ChangeLog'
+      - 'docker_package_install.sh'
+      - 'Dockerfile'
+      - 'Dockerfile.release'
+      - 'INSTALLING'
+      - 'LICENSE'
+      - 'LICENSE.OpenSSL'
+      - 'README'
+      - 'README.md'
+      - 'SECURITY.md'
 
 env:
   LANG: en_US.UTF-8
@@ -29,7 +92,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         env:
           PVS_STUDIO_NAME: ${{ secrets.PvsStudioName }}
           PVS_STUDIO_KEY: ${{ secrets.PvsStudioKey }}
@@ -74,7 +137,7 @@ jobs:
           sudo apt-get -y --no-install-recommends install autoconf automake \
             build-essential ccache ethtool expect hostapd iw lcov           \
             libcmocka-dev libgcrypt20-dev libhwloc-dev libnl-3-dev          \
-            libnl-genl-3-dev libpcap-dev libpcre3-dev libsqlite3-dev        \
+            libnl-genl-3-dev libpcap-dev libpcre2-dev libsqlite3-dev        \
             libssl-dev libtool pkg-config rfkill screen shtool strace       \
             tcpdump usbutils wpasupplicant zlib1g-dev
           sudo dpkg -i "pvs-package/pvs.deb"

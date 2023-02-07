@@ -7,16 +7,83 @@ on:
   push:
     branches: [ master ]
     paths-ignore:
+      - apparmor/**
       - contrib/**
       - manpages/**
       - patches/**
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/alpine.yml'
+      - '.github/workflows/coverity.yml'
+      - '.github/workflows/docker.yml'
+      - '.github/workflows/docker-release.yml'
+      - '.github/workflows/dragonflybsd.yml'
+      - '.github/workflows/freebsd.yml'
+      - '.github/workflows/kali.yml'
+      - '.github/workflows/linux-pcre.yml'
+      - '.github/workflows/linux.yml'
+      - '.github/workflows/netbsd.yml'
+      - '.github/workflows/openbsd.yml'
+      - '.github/workflows/pvs-studio.yml'
+      - '.github/workflows/style.yml'
+      - '.github/workflows/windows.yml'
+      - '.vscode/**'
+      - '.clang-format'
+      - '.editorconfig'
+      - '.gitignore'
+      - '.pre-commit-config.yaml'
+      - 'AC_VERSION.in'
+      - 'AUTHORS'
+      - 'centos_autotools.sh'
+      - 'ChangeLog'
+      - 'docker_package_install.sh'
+      - 'Dockerfile'
+      - 'Dockerfile.release'
+      - 'INSTALLING'
+      - 'LICENSE'
+      - 'LICENSE.OpenSSL'
+      - 'README'
+      - 'README.md'
+      - 'SECURITY.md'
 
   pull_request:
     branches: [ master ]
     paths-ignore:
+      - apparmor/**
       - contrib/**
       - manpages/**
       - patches/**
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/coverity.yml'
+      - '.github/workflows/docker.yml'
+      - '.github/workflows/docker-release.yml'
+      - '.github/workflows/dragonflybsd.yml'
+      - '.github/workflows/freebsd.yml'
+      - '.github/workflows/kali.yml'
+      - '.github/workflows/linux-pcre.yml'
+      - '.github/workflows/linux.yml'
+      - '.github/workflows/netbsd.yml'
+      - '.github/workflows/openbsd.yml'
+      - '.github/workflows/pvs-studio.yml'
+      - '.github/workflows/style.yml'
+      - '.github/workflows/windows.yml'
+      - '.vscode/**'
+      - '.clang-format'
+      - '.editorconfig'
+      - '.gitignore'
+      - '.pre-commit-config.yaml'
+      - 'AC_VERSION.in'
+      - 'AUTHORS'
+      - 'centos_autotools.sh'
+      - 'ChangeLog'
+      - 'docker_package_install.sh'
+      - 'Dockerfile'
+      - 'Dockerfile.release'
+      - 'INSTALLING'
+      - 'LICENSE'
+      - 'LICENSE.OpenSSL'
+      - 'README'
+      - 'README.md'
+      - 'SECURITY.md'
 
 env:
   LANG: en_US.UTF-8
@@ -30,16 +97,10 @@ jobs:
       fail-fast: false
       matrix:
         compiler:
-          - cc:  gcc-11
-            cxx: g++-11
-          - cc:  gcc-10
-            cxx: g++-10
-          - cc:  gcc-9
-            cxx: g++-9
-          #- cc:  clang-11     broken handling with version.h
-          #  cxx: clang++-11
-          - cc:  clang-12
-            cxx: clang++-12
+          - cc:  gcc
+            cxx: g++
+          - cc:  clang
+            cxx: clang++
         flags:
           - name: Gcrypt
             flags: "--with-gcrypt"
@@ -49,7 +110,7 @@ jobs:
     name: macOS ${{ matrix.compiler.cc }} using ${{ matrix.flags.name }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 750
           submodules: 'recursive'
@@ -65,7 +126,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          brew install autoconf automake ccache cmocka expect hwloc libpcap libtool openssl pcre pkg-config sqlite3 shtool md5sha1sum
+          brew install autoconf automake ccache cmocka expect hwloc libpcap libtool openssl pcre2 pkg-config sqlite3 shtool md5sha1sum
 
       - name: Ccache stats before builds
         run: |
@@ -78,15 +139,9 @@ jobs:
           CPUS=$(($(sysctl -a | grep machdep.cpu.cores_per_package | awk '{ print $2 }') * 3 / 2))
           export PATH="/usr/local/opt/ccache/libexec:$PATH"
           case "${{ matrix.compiler.cc }}" in
-            clang-12)
+            clang)
               CC=clang
               CXX=clang++
-              export CFLAGS="-Werror -Wno-zero-length-array -Wno-deprecated-declarations"
-              export CXXFLAGS="-Werror -Wno-zero-length-array -Wno-deprecated-declarations"
-              ;;
-            clang-11)
-              CC=$(brew --prefix llvm)/bin/clang
-              CXX=$(brew --prefix llvm)/bin/clang++
               export CFLAGS="-Werror -Wno-zero-length-array -Wno-deprecated-declarations"
               export CXXFLAGS="-Werror -Wno-zero-length-array -Wno-deprecated-declarations"
               ;;

@@ -1,5 +1,9 @@
 # Aircrack-ng
 
+## Badges
+
+### Buildbot
+
 [![Alpine Linux Build Status](https://buildbot.aircrack-ng.org/badges/aircrack-ng-alpine.svg?left_text=Alpine%20Linux%20Build)](https://buildbot.aircrack-ng.org/)
 [![Kali Linux Build Status](https://buildbot.aircrack-ng.org/badges/aircrack-ng-kali.svg?left_text=Kali%20Linux%20Build)](https://buildbot.aircrack-ng.org/)
 [![Armel Kali Linux Build Status](https://buildbot.aircrack-ng.org/badges/aircrack-ng-armel.svg?left_text=Armel%20Kali%20Linux%20Build)](https://buildbot.aircrack-ng.org/)
@@ -10,8 +14,47 @@
 [![OpenBSD 6 Build Status](https://buildbot.aircrack-ng.org/badges/aircrack-ng-obsd.svg?left_text=OpenBSD%20Build)](https://buildbot.aircrack-ng.org/)
 [![NetBSD 8.1 Build Status](https://buildbot.aircrack-ng.org/badges/aircrack-ng-netbsd81.svg?left_text=NetBSD%20Build)](https://buildbot.aircrack-ng.org/)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/aircrack-ng/badge.svg)](https://scan.coverity.com/projects/aircrack-ng)
+
+### GitHub CI
+
+[![Linux CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux.yml)
+[![Linux PCRE CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux-pcre.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux-pcre.yml)
+[![macOS CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/macos.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/macos.yml)
+[![Windows CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/windows.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/windows.yml)
+[![DragonFlyBSD CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/dragonflybsd.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/dragonflybsd.yml)
+[![FreeBSD CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/freebsd.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/freebsd.yml)
+[![NetBSD CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/netbsd.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/netbsd.yml)
+[![OpenBSD CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/openbsd.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/openbsd.yml)
+[![Kali Linux CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/kali.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/kali.yml)
+[![Alpine Linux](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/alpine.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/alpine.yml)
+
+### Packagecloud.io
+
 [![PackageCloud DEB](https://img.shields.io/badge/deb-packagecloud.io-844fec.svg)](https://packagecloud.io/aircrack-ng/git/install#bash-deb)
 [![PackageCloud RPM](https://img.shields.io/badge/rpm-packagecloud.io-844fec.svg)](https://packagecloud.io/aircrack-ng/git/install#bash-rpm)
+
+### Others
+
+[![Coverity Scan](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/coverity.yml/badge.svg)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/coverity.yml)
+[![Docker (git) push to DockerHub](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/docker.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/docker.yml)
+[![PVS-Studio Analysis](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/pvs-studio.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/pvs-studio.yml)
+[![Style & Consistency](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/style.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/style.yml)
+
+### Repository versions
+
+![Arch Linux package](https://img.shields.io/archlinux/v/community/x86_64/aircrack-ng)
+![Debian package](https://img.shields.io/debian/v/aircrack-ng/testing?label=debian%20testing)
+![Docker Image Version (latest by date)](https://img.shields.io/docker/v/aircrackng/git?color=blue&label=Docker%20Tag%20%7C%20git)
+![Fedora package](https://img.shields.io/fedora/v/aircrack-ng)
+![homebrew version](https://img.shields.io/homebrew/v/aircrack-ng)
+![Ubuntu package](https://img.shields.io/ubuntu/v/aircrack-ng/bionic?label=Ubuntu%2018.04)
+![Ubuntu package](https://img.shields.io/ubuntu/v/aircrack-ng/focal?label=Ubuntu%2020.04)
+![Ubuntu package](https://img.shields.io/ubuntu/v/aircrack-ng/jammy?label=Ubuntu%2022.04)
+![Ubuntu package](https://img.shields.io/ubuntu/v/aircrack-ng/kinetic?label=Ubuntu%2022.10)
+![Ubuntu package](https://img.shields.io/ubuntu/v/aircrack-ng/lunar?label=Ubuntu%2023.04)
+
+
+## Description
 
 Aircrack-ng is a complete suite of tools to assess WiFi network security.
 
@@ -47,7 +90,7 @@ Note: Airmon-ng only requires pciutils if the system has a PCI/PCIe bus and it i
 ## Optional stuff
 
  * If you want SSID filtering with regular expression in airodump-ng
-   (-essid-regex) PCRE development package is required.
+   (--essid-regex) PCRE or PCRE2 development package is required.
  * If you want to use airolib-ng and '-r' option in aircrack-ng,
    SQLite development package >= 3.3.17 (3.6.X version or better is recommended)
  * If you want to use Airpcap, the 'developer' directory from the CD/ISO/SDK is required.
@@ -70,15 +113,15 @@ Below are instructions for installing the basic requirements to build
 
 #### Arch Linux
 
-    sudo pacman -Sy base-devel libnl openssl ethtool util-linux zlib libpcap sqlite pcre hwloc cmocka hostapd wpa_supplicant tcpdump screen iw usbutils pciutils expect
+    sudo pacman -Sy base-devel libnl openssl ethtool util-linux zlib libpcap sqlite pcre2 hwloc cmocka hostapd wpa_supplicant tcpdump screen iw usbutils pciutils expect
 
 #### Debian/Ubuntu
 
-    sudo apt-get install build-essential autoconf automake libtool pkg-config libnl-3-dev libnl-genl-3-dev libssl-dev ethtool shtool rfkill zlib1g-dev libpcap-dev libsqlite3-dev libpcre3-dev libhwloc-dev libcmocka-dev hostapd wpasupplicant tcpdump screen iw usbutils expect
+    sudo apt-get install build-essential autoconf automake libtool pkg-config libnl-3-dev libnl-genl-3-dev libssl-dev ethtool shtool rfkill zlib1g-dev libpcap-dev libsqlite3-dev libpcre2-dev libhwloc-dev libcmocka-dev hostapd wpasupplicant tcpdump screen iw usbutils expect
 
 #### Fedora
 
-    sudo yum install libtool pkgconfig sqlite-devel autoconf automake openssl-devel libpcap-devel pcre-devel rfkill libnl3-devel gcc gcc-c++ ethtool hwloc-devel libcmocka-devel make file expect hostapd wpa_supplicant iw usbutils tcpdump screen zlib-devel expect
+    sudo yum install libtool pkgconfig sqlite-devel autoconf automake openssl-devel libpcap-devel pcre2-devel rfkill libnl3-devel gcc gcc-c++ ethtool hwloc-devel libcmocka-devel make file expect hostapd wpa_supplicant iw usbutils tcpdump screen zlib-devel expect
 
 #### CentOS/RHEL 7
 
@@ -86,7 +129,7 @@ Below are instructions for installing the basic requirements to build
     sudo ./centos_autotools.sh
     # Remove older installation of automake/autoconf
     sudo yum remove autoconf automake
-    sudo yum install sqlite-devel openssl-devel libpcap-devel pcre-devel rfkill libnl3-devel ethtool hwloc-devel libcmocka-devel make file expect hostapd wpa_supplicant iw usbutils tcpdump screen zlib-devel
+    sudo yum install sqlite-devel openssl-devel libpcap-devel pcre2-devel rfkill libnl3-devel ethtool hwloc-devel libcmocka-devel make file expect hostapd wpa_supplicant iw usbutils tcpdump screen zlib-devel
 
 **Note**: autoconf, automake, libtool, and pkgconfig in the repositories are too old. The script centos_autotools.sh automatically installs dependencies to compile then install the tools.
 
@@ -94,25 +137,25 @@ Below are instructions for installing the basic requirements to build
 
     sudo yum config-manager --set-enabled powertools
     sudo yum install epel-release
-    sudo yum install libtool pkgconfig sqlite-devel autoconf automake openssl-devel libpcap-devel pcre-devel rfkill libnl3-devel gcc gcc-c++ ethtool hwloc-devel libcmocka-devel make file expect hostapd wpa_supplicant iw usbutils tcpdump screen zlib-devel
+    sudo yum install libtool pkgconfig sqlite-devel autoconf automake openssl-devel libpcap-devel pcre2-devel rfkill libnl3-devel gcc gcc-c++ ethtool hwloc-devel libcmocka-devel make file expect hostapd wpa_supplicant iw usbutils tcpdump screen zlib-devel
 
 #### openSUSE
 
-    sudo zypper install autoconf automake libtool pkg-config libnl3-devel libopenssl-1_1-devel zlib-devel libpcap-devel sqlite3-devel pcre-devel hwloc-devel libcmocka-devel hostapd wpa_supplicant tcpdump screen iw gcc-c++ gcc ethtool pciutils usbutils expect
+    sudo zypper install autoconf automake libtool pkg-config libnl3-devel libopenssl-1_1-devel zlib-devel libpcap-devel sqlite3-devel pcre2-devel hwloc-devel libcmocka-devel hostapd wpa_supplicant tcpdump screen iw gcc-c++ gcc ethtool pciutils usbutils expect
 
 #### Mageia
 
-    sudo urpmi autoconf automake libtool pkgconfig libnl3-devel libopenssl-devel zlib-devel libpcap-devel sqlite3-devel pcre-devel hwloc-devel libcmocka-devel hostapd wpa_supplicant tcpdump screen iw gcc-c++ gcc make expect
+    sudo urpmi autoconf automake libtool pkgconfig libnl3-devel libopenssl-devel zlib-devel libpcap-devel sqlite3-devel pcre2-devel hwloc-devel libcmocka-devel hostapd wpa_supplicant tcpdump screen iw gcc-c++ gcc make expect
 
 #### Alpine
 
-    sudo apk add gcc g++ make autoconf automake libtool libnl3-dev openssl-dev ethtool libpcap-dev cmocka-dev hostapd wpa_supplicant tcpdump screen iw pkgconf util-linux sqlite-dev pcre-dev linux-headers zlib-dev pciutils usbutils expect
+    sudo apk add gcc g++ make autoconf automake libtool libnl3-dev openssl-dev ethtool libpcap-dev cmocka-dev hostapd wpa_supplicant tcpdump screen iw pkgconf util-linux sqlite-dev pcre2-dev linux-headers zlib-dev pciutils usbutils expect
 
 **Note**: Community repository needs to be enabled for iw
 
 #### Clear Linux
 
-    sudo swupd bundle-add c-basic devpkg-openssl devpkg-libgcrypt devpkg-libnl devpkg-hwloc devpkg-libpcap devpkg-pcre devpkg-sqlite-autoconf ethtool wget network-basic software-testing sysadmin-basic wpa_supplicant os-testsuite
+    sudo swupd bundle-add c-basic devpkg-openssl devpkg-libgcrypt devpkg-libnl devpkg-hwloc devpkg-libpcap devpkg-pcre2 devpkg-sqlite-autoconf ethtool wget network-basic software-testing sysadmin-basic wpa_supplicant os-testsuite
 
 **Note**: hostapd must be compiled manually, it is not present in the repository
 
@@ -120,21 +163,21 @@ Below are instructions for installing the basic requirements to build
 
 #### FreeBSD
 
-    pkg install pkgconf shtool libtool gcc9 automake autoconf pcre sqlite3 openssl gmake hwloc cmocka
+    pkg install pkgconf shtool libtool gcc9 automake autoconf pcre2 sqlite3 openssl gmake hwloc cmocka
 
 #### DragonflyBSD
 
-    pkg install pkgconf shtool libtool gcc8 automake autoconf pcre sqlite3 libgcrypt gmake cmocka
+    pkg install pkgconf shtool libtool gcc8 automake autoconf pcre2 sqlite3 libgcrypt gmake cmocka
 
 #### OpenBSD
 
-    pkg_add pkgconf shtool libtool gcc automake autoconf pcre sqlite3 openssl gmake cmocka
+    pkg_add pkgconf shtool libtool gcc automake autoconf pcre2 sqlite3 openssl gmake cmocka
 
 ### macOS
 
 XCode, Xcode command line tools and HomeBrew are required.
 
-    brew install autoconf automake libtool openssl shtool pkg-config hwloc pcre sqlite3 libpcap cmocka
+    brew install autoconf automake libtool openssl shtool pkg-config hwloc pcre2 sqlite3 libpcap cmocka
 
 ### Windows
 
@@ -148,11 +191,33 @@ packages download location, and a mirror URL.
 An example of automatically installing all the dependencies
 is as follows:
 
-    c:\cygwin\setup-x86.exe -qnNdO -R C:/cygwin -s http://cygwin.mirror.constant.com -l C:/cygwin/var/cache/setup -P autoconf -P automake -P bison -P gcc-core -P gcc-g++ -P mingw-runtime -P mingw-binutils -P mingw-gcc-core -P mingw-gcc-g++ -P mingw-pthreads -P mingw-w32api -P libtool -P make -P python -P gettext-devel -P gettext -P intltool -P libiconv -P pkg-config -P git -P wget -P curl -P libpcre-devel -P libssl-devel -P libsqlite3-devel
+    c:\cygwin\setup-x86.exe -qnNdO -R C:/cygwin -s http://cygwin.mirror.constant.com -l C:/cygwin/var/cache/setup -P autoconf -P automake -P bison -P gcc-core -P gcc-g++ -P mingw-runtime -P mingw-binutils -P mingw-gcc-core -P mingw-gcc-g++ -P mingw-pthreads -P mingw-w32api -P libtool -P make -P python -P gettext-devel -P gettext -P intltool -P libiconv -P pkg-config -P git -P wget -P curl -P libpcre2-devel -P libssl-devel -P libsqlite3-devel
 
 #### MSYS2
 
-    pacman -Sy autoconf automake-wrapper libtool msys2-w32api-headers msys2-w32api-runtime gcc pkg-config git python openssl-devel openssl libopenssl msys2-runtime-devel gcc binutils make pcre-devel libsqlite-devel
+    pacman -Sy autoconf automake-wrapper libtool msys2-w32api-headers msys2-w32api-runtime gcc pkg-config git python openssl-devel openssl libopenssl msys2-runtime-devel gcc binutils make pcre2-devel libsqlite-devel
+
+## Docker containers
+
+We have two repositories on DockerHub:
+- [aircrackng/release](https://hub.docker.com/r/aircrackng/release): Each release
+- [aircrackng/git](https://hub.docker.com/r/aircrackng/git): every commit in the git repository
+
+Base command for the `git` version:
+
+`sudo docker run --rm -it aircrackng/git`
+
+Available platforms/CPU architectures:
+- linux/386 (base image: debian:unstable-slim)
+- linux/amd64 (base image: debian:unstable-slim)
+- linux/arm/v5 (base image: debian:unstable-slim)
+- linux/arm/v6 (base image: alpine:3)
+- linux/arm/v7 (base image: debian:unstable-slim)
+- linux/arm64/v8 (base image: debian:unstable-slim)
+- linux/mips64le (base image: debian:unstable-slim)
+- linux/ppc64le (base image: debian:unstable-slim)
+- linux/riscv64 (base image: debian:unstable-slim)
+- linux/s390x (base image: debian:unstable-slim)
 
 ## Compiling
 
@@ -224,13 +289,13 @@ to your choosing:
                    Note: Each script has its own dependencies.
 
 * **with-gcrypt**:   Use libgcrypt crypto library instead of the default OpenSSL.
-                And also use internal fast sha1 implementation (borrowed from GIT)
+                And also use internal fast sha1 implementation (borrowed from GIT).
                 Dependency (Debian): libgcrypt20-dev
 
-* **with-duma**:	Compile with DUMA support. DUMA is a library to detect buffer overruns and under-runs.
-            	Dependencies (debian): duma
+* **with-duma**:	Compile with DUMA support. DUMA is a library to detect buffer overruns and underruns.
+            	Dependency (Debian): duma
 
-* **disable-libnl**:  Set-up the project to be compiled without libnl (1 or 3). Linux option only.
+* **disable-libnl**:  Set up the project to be compiled without libnl (1 or 3). Linux option only.
 
 * **without-opt**:  Do not enable stack protector (on GCC 4.9 and above).
 
@@ -282,7 +347,7 @@ to your choosing:
     make install
     ```
 
-  * Testing (with sqlite, experimental and pcre)
+  * Testing (with sqlite, experimental and pcre2)
 
     ```
     ./configure --with-experimental
@@ -320,7 +385,7 @@ to your choosing:
     from Homebrew.
 
     If you wish to use OpenSSL from Homebrew, you may need to specify the location
-    to its' installation. To figure out where OpenSSL lives, run:
+    to its installation. To figure out where OpenSSL lives, run:
 
     `brew --prefix openssl`
 
@@ -430,9 +495,9 @@ the additional flag `--without-opt` to the `./configure` line:
 
 ## Linux/BSD
 
-Aircrack-ng is available in most distributions repositories. However, it is not always up to date.
+Aircrack-ng is available in most distributions repositories. However, it is not always up-to-date.
 
-We provide up to date versions via PackageCloud for a number of Linux distributions:
+We provide up-to-date versions via PackageCloud for a number of Linux distributions:
 
 - development (each commit in this repo): https://packagecloud.io/aircrack-ng/git
 - stable releases: https://packagecloud.io/aircrack-ng/release
@@ -446,8 +511,13 @@ We provide up to date versions via PackageCloud for a number of Linux distributi
 # Continuous integration
 
 - Linux CI (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux.yml
+- Linux PCRE CI (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux-pcre.yml
 - Windows CI (Github actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/windows.yml
 - macOS CI (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/macos.yml
+- DragonFlyBSD CI (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/dragonflybsd.yml
+- FreeBSD CI (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/freebsd.yml
+- NetBSD CI (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/netbsd.yml
+- OpenBSD CI (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/openbsd.yml
 - Code style and consistency (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/style.yml
 - PVS-Studio static analysis (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/pvs-studio.yml
 - Coverity Scan static analysis: https://scan.coverity.com/projects/aircrack-ng
@@ -476,7 +546,7 @@ Some more information is present in the [README](README) file.
 
 Documentation, tutorials, ... can be found on https://aircrack-ng.org
 
-Support is available in the [forum](https://forum.aircrack-ng.org) and on IRC (in #aircrack-ng on Libera Chat).
+Support is available in the [GitHub Discussions](https://github.com/aircrack-ng/aircrack-ng/discussions) and on IRC (in #aircrack-ng on Libera Chat).
 
 Every tool has its own manpage. For aircrack-ng, `man aircrack-ng`
 

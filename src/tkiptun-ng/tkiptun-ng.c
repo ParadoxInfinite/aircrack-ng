@@ -38,21 +38,9 @@
 #include "config.h"
 #endif
 
-#if defined(linux)
-#include <linux/rtc.h>
-#endif
-
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <sys/ioctl.h>
-#include <sys/wait.h>
 #include <sys/time.h>
 
-#include <netinet/in.h>
-#include <arpa/inet.h>
 #include <unistd.h>
-#include <dirent.h>
-#include <signal.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -61,13 +49,8 @@
 #include <getopt.h>
 
 #include <fcntl.h>
-#include <ctype.h>
 
 #include <limits.h>
-
-#include <netinet/in_systm.h>
-#include <netinet/ip.h>
-#include <netinet/tcp.h>
 
 #include "aircrack-ng/defs.h"
 #include "aircrack-ng/version.h"
@@ -1310,7 +1293,7 @@ static int do_attack_tkipchop(unsigned char * src_packet, int src_packet_len)
 	unsigned char rc4key[16], keystream[4096];
 
 	FILE * f_cap_out;
-	long nb_pkt_read;
+	//long nb_pkt_read;
 	unsigned long crc_mask;
 	unsigned char * chopped;
 
@@ -1515,7 +1498,7 @@ static int do_attack_tkipchop(unsigned char * src_packet, int src_packet_len)
 
 	memset(ticks, 0, sizeof(ticks));
 
-	nb_pkt_read = 0;
+	//nb_pkt_read = 0;
 	nb_pkt_sent = 0;
 	nb_bad_pkt = 0;
 	guess = 256;
@@ -1790,7 +1773,7 @@ static int do_attack_tkipchop(unsigned char * src_packet, int src_packet_len)
 		}
 		if (n == 0) continue;
 
-		nb_pkt_read++;
+		//nb_pkt_read++;
 
 		/* check if it's a deauth packet */
 

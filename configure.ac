@@ -49,7 +49,7 @@ m4_define([version_triplet],version_major.version_minor.version_micro)
 m4_append([version_triplet],version_scm)
 
 AC_PREREQ([2.59])
-AC_INIT([aircrack-ng],[version_triplet],[https://forum.aircrack-ng.org])
+AC_INIT([aircrack-ng],[version_triplet],[https://github.com/aircrack-ng/aircrack-ng/discussions])
 
 #
 # Cross-Compilation
@@ -319,6 +319,7 @@ ${PACKAGE} ${VERSION}
     Jemalloc:                    ${JEMALLOC}
     Pcap:                        ${PCAP_FOUND}
     Pcre:                        ${HAVE_PCRE}
+    Pcre2:                       ${HAVE_PCRE2} ${PCRE2_NOTE}
     Sqlite:                      ${HAVE_SQLITE3}
     Tcmalloc:                    ${TCMALLOC}
     Zlib:                        ${HAVE_ZLIB}
