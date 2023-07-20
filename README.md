@@ -2,41 +2,27 @@
 
 ## Badges
 
-### Buildbot
-
-[![Alpine Linux Build Status](https://buildbot.aircrack-ng.org/badges/aircrack-ng-alpine.svg?left_text=Alpine%20Linux%20Build)](https://buildbot.aircrack-ng.org/)
-[![Kali Linux Build Status](https://buildbot.aircrack-ng.org/badges/aircrack-ng-kali.svg?left_text=Kali%20Linux%20Build)](https://buildbot.aircrack-ng.org/)
-[![Armel Kali Linux Build Status](https://buildbot.aircrack-ng.org/badges/aircrack-ng-armel.svg?left_text=Armel%20Kali%20Linux%20Build)](https://buildbot.aircrack-ng.org/)
-[![Armhf Kali Linux Build Status](https://buildbot.aircrack-ng.org/badges/aircrack-ng-armhf.svg?left_text=Armhf%20Kali%20Linux%20Build)](https://buildbot.aircrack-ng.org/)
-[![DragonFly BSD Build Status](https://buildbot.aircrack-ng.org/badges/aircrack-ng-dfly.svg?left_text=DragonFly%20Build)](https://buildbot.aircrack-ng.org/)
-[![FreeBSD 11 Build Status](https://buildbot.aircrack-ng.org/badges/aircrack-ng-fbsd-11.svg?left_text=FreeBSD%2011%20Build)](https://buildbot.aircrack-ng.org/)
-[![FreeBSD 12 Build Status](https://buildbot.aircrack-ng.org/badges/aircrack-ng-fbsd-12.svg?left_text=FreeBSD%2012%20Build)](https://buildbot.aircrack-ng.org/)
-[![OpenBSD 6 Build Status](https://buildbot.aircrack-ng.org/badges/aircrack-ng-obsd.svg?left_text=OpenBSD%20Build)](https://buildbot.aircrack-ng.org/)
-[![NetBSD 8.1 Build Status](https://buildbot.aircrack-ng.org/badges/aircrack-ng-netbsd81.svg?left_text=NetBSD%20Build)](https://buildbot.aircrack-ng.org/)
-[![Coverity Scan Build Status](https://scan.coverity.com/projects/aircrack-ng/badge.svg)](https://scan.coverity.com/projects/aircrack-ng)
-
 ### GitHub CI
 
+[![Alma Linux CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/almalinux.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/almalinux.yml)
+[![Alpine Linux](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/alpine.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/alpine.yml)
+[![DragonFlyBSD CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/dragonflybsd.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/dragonflybsd.yml)
+[![FreeBSD CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/freebsd.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/freebsd.yml)
+[![Kali Linux CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/kali.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/kali.yml)
 [![Linux CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux.yml)
 [![Linux PCRE CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux-pcre.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux-pcre.yml)
 [![macOS CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/macos.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/macos.yml)
-[![Windows CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/windows.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/windows.yml)
-[![DragonFlyBSD CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/dragonflybsd.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/dragonflybsd.yml)
-[![FreeBSD CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/freebsd.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/freebsd.yml)
 [![NetBSD CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/netbsd.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/netbsd.yml)
 [![OpenBSD CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/openbsd.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/openbsd.yml)
-[![Kali Linux CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/kali.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/kali.yml)
-[![Alpine Linux](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/alpine.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/alpine.yml)
-
-### Packagecloud.io
-
-[![PackageCloud DEB](https://img.shields.io/badge/deb-packagecloud.io-844fec.svg)](https://packagecloud.io/aircrack-ng/git/install#bash-deb)
-[![PackageCloud RPM](https://img.shields.io/badge/rpm-packagecloud.io-844fec.svg)](https://packagecloud.io/aircrack-ng/git/install#bash-rpm)
+[![Windows CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/windows.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/windows.yml)
 
 ### Others
 
+[![Clang Scan-build](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/scanbuild.yml/badge.svg)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/scanbuild.yml)
+[![Codespell](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/codespell.yml/badge.svg)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/codespell.yml)
 [![Coverity Scan](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/coverity.yml/badge.svg)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/coverity.yml)
 [![Docker (git) push to DockerHub](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/docker.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/docker.yml)
+[![Markdown link](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/markdown-link.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/markdown-link.yml)
 [![PVS-Studio Analysis](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/pvs-studio.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/pvs-studio.yml)
 [![Style & Consistency](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/style.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/style.yml)
 
@@ -79,8 +65,8 @@ All tools are command line which allows for heavy scripting. A lot of GUIs have 
  * On Windows, cygwin has to be used and it also requires w32api package.
  * On Windows, if using clang, libiconv and libiconv-devel
  * Linux: LibNetlink 1 or 3. It can be disabled by passing --disable-libnl to configure.
- * pkg-config (pkgconf on FreeBSD)
- * FreeBSD, OpenBSD, NetBSD, Solaris and OS X with Macports: gmake
+ * pkg-config (pkgconf on FreeBSD, DragonFlyBSD, OpenBSD and NetBSD)
+ * FreeBSD, DragonFlyBSD, OpenBSD, NetBSD, Solaris and OS X with Macports: gmake
  * Linux/Cygwin: make and Standard C++ Library development package (Debian: libstdc++-dev)
 
 Note: Airmon-ng only requires pciutils if the system has a PCI/PCIe bus and it is populated.
@@ -172,6 +158,10 @@ Below are instructions for installing the basic requirements to build
 #### OpenBSD
 
     pkg_add pkgconf shtool libtool gcc automake autoconf pcre2 sqlite3 openssl gmake cmocka
+
+#### NetBSD
+
+    pkg_add pkgconf libtool gcc7 automake autoconf pcre2 sqlite3 openssl gmake cmocka
 
 ### macOS
 
@@ -269,7 +259,7 @@ Finally, the additional targets listed below may be of use in your environment:
 When configuring, the following flags can be used and combined to adjust the suite
 to your choosing:
 
-* **with-airpcap=DIR**:  needed for supporting airpcap devices on windows (cygwin or msys2 only)
+* **with-airpcap=DIR**:  needed for supporting airpcap devices on Windows (Cygwin or MSYS2 only).
                 Replace DIR above with the absolute location to the root of the
                 extracted source code from the Airpcap CD or downloaded SDK available
                 online. Required on Windows to build `besside-ng`, `besside-ng-crawler`, 
@@ -297,7 +287,7 @@ to your choosing:
 
 * **disable-libnl**:  Set up the project to be compiled without libnl (1 or 3). Linux option only.
 
-* **without-opt**:  Do not enable stack protector (on GCC 4.9 and above).
+* **without-opt**:  Do not enable -O3 optimizations.
 
 * **enable-shared**:   Make OSdep a shared library.
 
@@ -497,48 +487,11 @@ the additional flag `--without-opt` to the `./configure` line:
 
 Aircrack-ng is available in most distributions repositories. However, it is not always up-to-date.
 
-We provide up-to-date versions via PackageCloud for a number of Linux distributions:
-
-- development (each commit in this repo): https://packagecloud.io/aircrack-ng/git
-- stable releases: https://packagecloud.io/aircrack-ng/release
-
 ## Windows
  * Install the appropriate "monitor" driver for your card; standard drivers don't work for capturing data.
  * Aircrack-ng suite is command line tools. So, you have to open a command-line
    `Start menu -> Run... -> cmd.exe` then use them
  * Run the executables without any parameters to have help
-
-# Continuous integration
-
-- Linux CI (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux.yml
-- Linux PCRE CI (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux-pcre.yml
-- Windows CI (Github actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/windows.yml
-- macOS CI (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/macos.yml
-- DragonFlyBSD CI (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/dragonflybsd.yml
-- FreeBSD CI (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/freebsd.yml
-- NetBSD CI (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/netbsd.yml
-- OpenBSD CI (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/openbsd.yml
-- Code style and consistency (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/style.yml
-- PVS-Studio static analysis (GitHub actions): https://github.com/aircrack-ng/aircrack-ng/actions/workflows/pvs-studio.yml
-- Coverity Scan static analysis: https://scan.coverity.com/projects/aircrack-ng
-
-## Buildbots
-
-URL: https://buildbot.aircrack-ng.org/
-
-Linux buildbots:
-- CentOS
-- AArch64
-- Kali Linux
-- Armel Kali Linux
-- Armhf Kali Linux
-- Alpine Linux
-
-BSD buildbots:
-- OpenBSD
-- FreeBSD
-- NetBSD
-- DragonflyBSD
 
 # Documentation
 

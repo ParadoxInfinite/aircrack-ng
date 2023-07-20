@@ -514,7 +514,7 @@ static uint16_t calcsum(char * buffer, size_t length)
 
 	while (sum >> 16) sum = (sum & 0xFFFF) + (sum >> 16);
 
-	return ((uint16_t)(~sum));
+	return ((uint16_t) (~sum));
 }
 
 static uint16_t calcsum_for_protocol(uint16_t protocol,
@@ -546,7 +546,7 @@ static uint16_t calcsum_for_protocol(uint16_t protocol,
 	while (chksum >> 16) chksum = (chksum & 0xFFFF) + (chksum >> 16);
 
 	// Return the one's complement of chksum
-	return ((uint16_t)(~chksum));
+	return ((uint16_t) (~chksum));
 }
 
 // This needs to be cleaned up so that we can do UDP/TCP in one function. Don't
@@ -766,7 +766,7 @@ static void process_unencrypted_data_packet(uint8_t * packet,
 		size_80211hdr = sizeof(struct ieee80211_qosframe);
 		// Here's an idea from a presentation out of NL, assign this packet
 		// a QOS priority that isn't used in order to not collide with
-		// squence numbers from the real AP/STA
+		// sequence numbers from the real AP/STA
 		struct ieee80211_qosframe * wqfrm
 			= (struct ieee80211_qosframe *) packet;
 		wqfrm->i_qos[0] = 0x7;
@@ -828,8 +828,7 @@ static void process_unencrypted_data_packet(uint8_t * packet,
 			// frame 1 of 4: Pairwise == 1, Install == 0, Ack == 1, MIC == 0,
 			// Secure == 0 */
 			if (1 == p_rhdr->key_type && 0 == p_rhdr->key_install
-				&& 1 == p_rhdr->key_ack
-				&& 0 == p_rhdr->key_mic)
+				&& 1 == p_rhdr->key_ack && 0 == p_rhdr->key_mic)
 			{
 				/* set authenticator nonce */
 				memcpy(lopt.st_cur->anonce, p_rhdr->wpa_nonce, 32);
@@ -842,8 +841,7 @@ static void process_unencrypted_data_packet(uint8_t * packet,
 			/* frame 4 of 4: Pairwise == 1, Install == 0, Ack == 0, MIC == 1,
 			 * Secure == 1 */
 			if (1 == p_rhdr->key_type && 0 == p_rhdr->key_install
-				&& 0 == p_rhdr->key_ack
-				&& 1 == p_rhdr->key_mic)
+				&& 0 == p_rhdr->key_ack && 1 == p_rhdr->key_mic)
 			{
 				if (memcmp(p_rhdr->wpa_nonce, ZERO, 32) != 0)
 				{
@@ -885,8 +883,7 @@ static void process_unencrypted_data_packet(uint8_t * packet,
 			/* frame 3 of 4: Pairwise == 1, Install == 1, Ack == 1, MIC == 1,
 			 * Secure == 1 */
 			if (1 == p_rhdr->key_type && 1 == p_rhdr->key_install
-				&& 1 == p_rhdr->key_ack
-				&& 1 == p_rhdr->key_mic)
+				&& 1 == p_rhdr->key_ack && 1 == p_rhdr->key_mic)
 			{
 				if (memcmp(p_rhdr->wpa_nonce, ZERO, 32) != 0)
 				{
@@ -1325,7 +1322,7 @@ static bool find_station_in_db(uint8_t * p_stmac)
 	}
 
 	if (NULL == lopt.st_cur)
-		// If not fount, opt.st_cur == NULL
+		// If not found, opt.st_cur == NULL
 		return (FALSE);
 	else
 		// If found, opt.st_cur == p_stmac

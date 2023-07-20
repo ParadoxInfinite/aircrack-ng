@@ -11,21 +11,31 @@ on:
       - contrib/**
       - manpages/**
       - patches/**
+      - scripts/**
       - '.devcontainer/**'
+      - '.coverityignore'
+      - '.github/workflows/gentoo.yml'
       - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-release-ready.yml'
+      - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
       - '.github/workflows/linux-pcre.yml'
       - '.github/workflows/macos.yml'
+      - '.github/workflows/manual.yml'
+      - '.github/workflows/markdown-link.yml'
       - '.github/workflows/netbsd.yml'
       - '.github/workflows/openbsd.yml'
       - '.github/workflows/pvs-studio.yml'
+      - '.github/workflows/scanbuild.yml'
       - '.github/workflows/windows.yml'
       - '.vscode/**'
       - '.gitignore'
@@ -51,20 +61,31 @@ on:
       - contrib/**
       - manpages/**
       - patches/**
+      - scripts/**
       - '.devcontainer/**'
+      - '.coverityignore'
+      - '.github/workflows/gentoo.yml'
       - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/almalinux.yml'
+      - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-release-ready.yml'
+      - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
       - '.github/workflows/linux-pcre.yml'
       - '.github/workflows/macos.yml'
+      - '.github/workflows/manual.yml'
+      - '.github/workflows/markdown-link.yml'
       - '.github/workflows/netbsd.yml'
       - '.github/workflows/openbsd.yml'
       - '.github/workflows/pvs-studio.yml'
+      - '.github/workflows/scanbuild.yml'
       - '.github/workflows/windows.yml'
       - '.vscode/**'
       - '.gitignore'
@@ -89,7 +110,7 @@ env:
 
 jobs:
   clang_format:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
 
     name: Clang-Format
 
@@ -97,23 +118,13 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install dependencies
-        env:
-          DEBIAN_FRONTEND: noninteractive
-          CLANGURL: "https://releases.llvm.org/3.8.1/"
-          CLANGFILE: "clang+llvm-3.8.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz"
         run: |
-          sudo apt-get install -y --no-install-recommends libtinfo5
-          wget "${CLANGURL}/${CLANGFILE}"
-          sudo tar -x --strip-components=1 -C /usr/local -J -f ${CLANGFILE}
-          rm -f ${CLANGFILE}
+          sudo apt-get install -y clang-format-12
 
       - name: Check source code formatting
         run: |
-          # ensure our clang-format is first found
-          export PATH="/usr/local/bin:$PATH"
-
           echo "::group::Process all source files with clang-format"
-          # check formatting matches clang-format-3.8. Since newer versions can
+          # check formatting matches clang-format-12. Since newer versions can
           # have changes in formatting even without any rule changes, we have
           # to fix on a single version.
           . ./build/clang_format_all.sh
@@ -125,12 +136,12 @@ jobs:
           git diff
 
           set -e && git diff --quiet || (
-            echo "***************************************************";
-            echo "*** The code is not clean against clang-format  ***";
-            echo "*** Please run clang-format-3.8 and fix the     ***";
-            echo "*** differences then rebase/squash them into    ***";
-            echo "*** the relevant commits. Do not add a commit   ***";
-            echo "*** for just formatting fixes. Thanks!          ***";
-            echo "***************************************************";
+            echo "****************************************************";
+            echo "*** The code is not clean against clang-format   ***";
+            echo "*** Please run clang-format-12/13/14/15 and fix  ***";
+            echo "*** the differences then rebase/squash them into ***";
+            echo "*** the relevant commits. Do not add a commit    ***";
+            echo "*** for just formatting fixes. Thanks!           ***";
+            echo "****************************************************";
             exit 1;
           )

@@ -11,19 +11,28 @@ on:
       - contrib/**
       - manpages/**
       - patches/**
+      - '.coverityignore'
+      - '.github/workflows/gentoo.yml'
       - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-release-ready.yml'
+      - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
       - '.github/workflows/linux-pcre.yml'
       - '.github/workflows/macos.yml'
+      - '.github/workflows/manual.yml'
+      - '.github/workflows/markdown-link.yml'
       - '.github/workflows/netbsd.yml'
       - '.github/workflows/openbsd.yml'
       - '.github/workflows/pvs-studio.yml'
+      - '.github/workflows/scanbuild.yml'
       - '.github/workflows/style.yml'
       - '.github/workflows/windows.yml'
       - '.vscode/**'
@@ -44,6 +53,7 @@ on:
       - 'README'
       - 'README.md'
       - 'SECURITY.md'
+      - 'scripts/airmon-ng.linux'
 
   pull_request:
     branches: [ master ]
@@ -52,19 +62,28 @@ on:
       - contrib/**
       - manpages/**
       - patches/**
+      - '.coverityignore'
+      - '.github/workflows/gentoo.yml'
       - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-release-ready.yml'
+      - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
       - '.github/workflows/linux-pcre.yml'
       - '.github/workflows/macos.yml'
+      - '.github/workflows/manual.yml'
+      - '.github/workflows/markdown-link.yml'
       - '.github/workflows/netbsd.yml'
       - '.github/workflows/openbsd.yml'
       - '.github/workflows/pvs-studio.yml'
+      - '.github/workflows/scanbuild.yml'
       - '.github/workflows/style.yml'
       - '.github/workflows/windows.yml'
       - '.vscode/**'
@@ -85,6 +104,7 @@ on:
       - 'README'
       - 'README.md'
       - 'SECURITY.md'
+      - 'scripts/airmon-ng.linux'
 
 env:
   LANG: en_US.UTF-8
@@ -118,8 +138,10 @@ jobs:
         with:
           envs: 'LANG TZ MAKE'
           usesh: true
+          sync: rsync
+          copyback: false
           prepare: |
-            pkg install -y pkgconf shtool libtool ${{ matrix.compiler.cc }} automake autoconf pcre2 sqlite3 gmake cmocka
+            pkg install -y git pkgconf shtool libtool ${{ matrix.compiler.cc }} automake autoconf pcre2 sqlite3 gmake cmocka
           run: |
             export CC="${{ matrix.compiler.cc }}"
             export CXX="${{ matrix.compiler.cxx }}"

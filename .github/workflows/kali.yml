@@ -6,23 +6,34 @@ on:
       - 'master'
     paths-ignore:
       - '.devcontainer/**'
+      - '.coverityignore'
+      - '.github/workflows/gentoo.yml'
       - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-release-ready.yml'
+      - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
-      - '.github/workflows/dragonglybsd.yml'
+      - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/irc.yml'
       - '.github/workflows/linux.yml'
       - '.github/workflows/linux-pcre.yml'
       - '.github/workflows/macos.yml'
+      - '.github/workflows/manual.yml'
+      - '.github/workflows/markdown-link.yml'
       - '.github/workflows/netbsd.yml'
       - '.github/workflows/openbsd.yml'
       - '.github/workflows/pvs-studio.yml'
+      - '.github/workflows/scanbuild.yml'
       - '.github/workflows/style.yml'
       - '.github/workflows/windows.yml'
       - '.vscode/**'
+      - 'apparmor/**'
       - 'contrib/**'
+      - 'manpages/**'
       - 'patches/**'
       - '.clang-format'
       - '.editorconfig'
@@ -38,27 +49,39 @@ on:
       - 'README.md'
       - 'SECURITY.md'
       - 'centos_autotools.sh'
+      - 'scripts/airmon-ng.freebsd'
   pull_request:
     branches: [ master ]
     paths-ignore:
       - '.devcontainer/**'
+      - '.coverityignore'
+      - '.github/workflows/gentoo.yml'
       - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-release-ready.yml'
+      - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
-      - '.github/workflows/dragonglybsd.yml'
+      - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/irc.yml'
       - '.github/workflows/linux.yml'
       - '.github/workflows/linux-pcre.yml'
       - '.github/workflows/macos.yml'
+      - '.github/workflows/manual.yml'
+      - '.github/workflows/markdown-link.yml'
       - '.github/workflows/netbsd.yml'
       - '.github/workflows/openbsd.yml'
       - '.github/workflows/pvs-studio.yml'
+      - '.github/workflows/scanbuild.yml'
       - '.github/workflows/style.yml'
       - '.github/workflows/windows.yml'
       - '.vscode/**'
+      - 'apparmor/**'
       - 'contrib/**'
+      - 'manpages/**'
       - 'patches/**'
       - '.clang-format'
       - '.editorconfig'
@@ -74,6 +97,7 @@ on:
       - 'README.md'
       - 'SECURITY.md'
       - 'centos_autotools.sh'
+      - 'scripts/airmon-ng.freebsd'
 
 jobs:
   lint:
@@ -84,14 +108,14 @@ jobs:
         uses: actions/checkout@v3
       - 
         name: Lint Dockerfile
-        uses: hadolint/hadolint-action@v3.0.0
+        uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: Dockerfile
           verbose: true
           failure-threshold: error
       - 
         name: Lint Release Dockerfile
-        uses: hadolint/hadolint-action@v3.0.0
+        uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: './Dockerfile.release'
           verbose: true
@@ -113,7 +137,7 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
-        name: Build and push on linux/amd64
+        name: Build on linux/amd64
         uses: docker/build-push-action@v3
         with:
           platforms: linux/amd64

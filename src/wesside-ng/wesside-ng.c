@@ -1132,8 +1132,7 @@ static void check_relay(struct wstate * ws,
 	// see if we get the multicast stuff of when decrypting
 	if ((wh->i_fc[1] & IEEE80211_FC1_DIR_FROMDS)
 		&& (memcmp(wh->i_addr3, ws->ws_mymac, 6) == 0)
-		&& (memcmp(wh->i_addr1, MCAST_PREF, 5) == 0)
-		&& dlen == 36)
+		&& (memcmp(wh->i_addr1, MCAST_PREF, 5) == 0) && dlen == 36)
 	{
 		REQUIRE(ws->ws_cipher != NULL);
 
@@ -1190,8 +1189,7 @@ static void got_wep(struct wstate * ws, struct ieee80211_frame * wh, int rd)
 	if ((wh->i_fc[1] & IEEE80211_FC1_DIR_FROMDS)
 		&& (memcmp(wh->i_addr3, ws->ws_mymac, 6) != 0)
 		&& (memcmp(wh->i_addr1, "\xff\xff\xff\xff\xff\xff", 6) == 0)
-		&& (dlen == 36 || dlen == PADDED_ARPLEN)
-		&& !ws->ws_cipher
+		&& (dlen == 36 || dlen == PADDED_ARPLEN) && !ws->ws_cipher
 		&& !ws->ws_netip)
 	{
 		decrypt_arpreq(ws, wh, rd);
@@ -1550,8 +1548,8 @@ static void decrypt(struct wstate * ws)
 		ws->ws_dfs.fs_ptr = ws->ws_dfs.fs_data;
 
 		seq = fnseq(0, ws->ws_psent);
-		ws->ws_dfs.fs_wh.i_seq[0] = (uint8_t)(seq >> 8);
-		ws->ws_dfs.fs_wh.i_seq[1] = (uint8_t)(seq % 256);
+		ws->ws_dfs.fs_wh.i_seq[0] = (uint8_t) (seq >> 8);
+		ws->ws_dfs.fs_wh.i_seq[1] = (uint8_t) (seq % 256);
 	}
 
 	send_fragment(ws, &ws->ws_dfs, &ws->ws_dpi);
@@ -1981,7 +1979,7 @@ static void post_input(struct wstate * ws, struct timeval * now)
 
 	el = elapsed_time_diff(&ws->ws_last_wcount, now);
 
-	/* calculate rate, roughtly */
+	/* calculate rate, roughly */
 	if (el < 1 * 1000 * 1000) return;
 
 	ws->ws_rate = ws->ws_packets - ws->ws_last_wep_count;

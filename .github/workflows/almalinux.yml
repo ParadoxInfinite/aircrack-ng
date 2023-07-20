@@ -1,4 +1,4 @@
-name: Alpine Linux CI
+name: Alma Linux CI
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - '.coverityignore'
       - '.github/workflows/gentoo.yml'
       - '.github/ISSUE_TEMPLATE/**'
-      - '.github/workflows/almalinux.yml'
+      - '.github/workflows/alpine.yml'
       - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
@@ -18,9 +18,9 @@ on:
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
       - '.github/workflows/irc.yml'
-      - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
       - '.github/workflows/linux-pcre.yml'
+      - '.github/workflows/kali.yml'
       - '.github/workflows/macos.yml'
       - '.github/workflows/manual.yml'
       - '.github/workflows/markdown-link.yml'
@@ -51,14 +51,13 @@ on:
       - 'centos_autotools.sh'
       - 'scripts/airmon-ng.freebsd'
   pull_request:
-    branches:
-      - 'master'
+    branches: [ master ]
     paths-ignore:
       - '.devcontainer/**'
       - '.coverityignore'
       - '.github/workflows/gentoo.yml'
       - '.github/ISSUE_TEMPLATE/**'
-      - '.github/workflows/almalinux.yml'
+      - '.github/workflows/alpine.yml'
       - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
@@ -67,7 +66,6 @@ on:
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
       - '.github/workflows/irc.yml'
-      - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
       - '.github/workflows/linux-pcre.yml'
       - '.github/workflows/macos.yml'
@@ -127,7 +125,7 @@ jobs:
         with:
           cli-args: "docker_package_install.sh"
 
-  alpine:
+  alma:
     runs-on: ubuntu-22.04
     needs: lint
     steps:
@@ -138,9 +136,9 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
-        name: Build on linux/amd64 and linux/386
+        name: Build on linux/amd64
         uses: docker/build-push-action@v3
         with:
-          platforms: linux/amd64, linux/386
-          build-args: IMAGE_BASE=alpine:3
+          platforms: linux/amd64
+          build-args: IMAGE_BASE=almalinux:9
           push: false

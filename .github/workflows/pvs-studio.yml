@@ -12,17 +12,24 @@ on:
       - manpages/**
       - patches/**
       - '.devcontainer/**'
+      - '.coverityignore'
+      - '.github/workflows/gentoo.yml'
       - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/coverity.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
       - '.github/workflows/linux-pcre.yml'
       - '.github/workflows/macos.yml'
+      - '.github/workflows/manual.yml'
+      - '.github/workflows/markdown-link.yml'
       - '.github/workflows/netbsd.yml'
       - '.github/workflows/openbsd.yml'
       - '.github/workflows/windows.yml'
@@ -42,6 +49,7 @@ on:
       - 'README'
       - 'README.md'
       - 'SECURITY.md'
+      - 'scripts/airmon-ng.*'
 
   pull_request:
     branches: [ master ]
@@ -51,16 +59,24 @@ on:
       - manpages/**
       - patches/**
       - '.devcontainer/**'
+      - '.coverityignore'
+      - '.github/workflows/gentoo.yml'
       - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/almalinux.yml'
+      - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/coverity.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
       - '.github/workflows/linux-pcre.yml'
       - '.github/workflows/macos.yml'
+      - '.github/workflows/manual.yml'
+      - '.github/workflows/markdown-link.yml'
       - '.github/workflows/netbsd.yml'
       - '.github/workflows/openbsd.yml'
       - '.github/workflows/windows.yml'
@@ -80,6 +96,7 @@ on:
       - 'README'
       - 'README.md'
       - 'SECURITY.md'
+      - 'scripts/airmon-ng.*'
 
 env:
   LANG: en_US.UTF-8
@@ -89,7 +106,7 @@ jobs:
   pvs_studio_analyzer:
     name: PVS-Studio Static Analyzer
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
@@ -117,7 +134,7 @@ jobs:
         run: |
           p=$(curl -sRL "https://pvs-studio.com/en/pvs-studio/download-all/" |\
               grep -oE 'https?://cdn.pvs-studio.com/pvs-studio-[0-9.]+(-amd64\.deb)')
-          echo "::set-output name=debfile::$p"
+          echo "debfile=${p}" >> $GITHUB_OUTPUT
 
       - name: Fetch PVS-Studio package
         env:
@@ -216,7 +233,7 @@ jobs:
           PVS_STUDIO_NAME: ${{ secrets.PvsStudioName }}
           PVS_STUDIO_KEY: ${{ secrets.PvsStudioKey }}
         if: ${{ env.ACT != 'true' && env.PVS_STUDIO_NAME != null && env.PVS_STUDIO_KEY != null }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: pvs-analysis-report
           path: pvs-report

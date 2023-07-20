@@ -38,6 +38,11 @@
 #include "config.h"
 #endif
 
+#ifdef linux
+#include <linux/rtc.h>
+#endif
+
+#include <sys/ioctl.h>
 #include <sys/time.h>
 
 #include <unistd.h>
@@ -46,6 +51,8 @@
 #include <stdio.h>
 #include <errno.h>
 #include <getopt.h>
+
+#include <fcntl.h>
 
 #include "aircrack-ng/defs.h"
 #include "aircrack-ng/version.h"
@@ -131,7 +138,7 @@ static struct WPA_ST_info * st_1st = NULL;
 
 pFrag_t rFragment;
 
-static struct net_entry * find_entry(unsigned char * adress)
+static struct net_entry * find_entry(unsigned char * address)
 {
 	struct net_entry * cur = nets;
 
@@ -139,7 +146,7 @@ static struct net_entry * find_entry(unsigned char * adress)
 
 	do
 	{
-		if (!memcmp(cur->addr, adress, 6))
+		if (!memcmp(cur->addr, address, 6))
 		{
 			return (cur);
 		}
@@ -149,7 +156,7 @@ static struct net_entry * find_entry(unsigned char * adress)
 	return (NULL);
 }
 
-static void set_entry(unsigned char * adress, unsigned char network)
+static void set_entry(unsigned char * address, unsigned char network)
 {
 	struct net_entry * cur;
 
@@ -164,7 +171,7 @@ static void set_entry(unsigned char * adress, unsigned char network)
 	}
 	else
 	{
-		cur = find_entry(adress);
+		cur = find_entry(address);
 		if (cur == NULL)
 		{
 			cur = malloc(sizeof(struct net_entry));
@@ -176,13 +183,13 @@ static void set_entry(unsigned char * adress, unsigned char network)
 		}
 	}
 
-	memcpy(cur->addr, adress, 6);
+	memcpy(cur->addr, address, 6);
 	cur->net = network;
 }
 
-static int get_entry(unsigned char * adress)
+static int get_entry(unsigned char * address)
 {
-	struct net_entry * cur = find_entry(adress);
+	struct net_entry * cur = find_entry(address);
 
 	if (cur == NULL)
 	{
@@ -709,8 +716,7 @@ static int packet_recv(unsigned char * packet, size_t length)
 			/* frame 1: Pairwise == 1, Install == 0, Ack == 1, MIC == 0 */
 
 			if ((packet[z + 6] & 0x08) != 0 && (packet[z + 6] & 0x40) == 0
-				&& (packet[z + 6] & 0x80) != 0
-				&& (packet[z + 5] & 0x01) == 0)
+				&& (packet[z + 6] & 0x80) != 0 && (packet[z + 5] & 0x01) == 0)
 			{
 				/* set authenticator nonce */
 
@@ -720,8 +726,7 @@ static int packet_recv(unsigned char * packet, size_t length)
 			/* frame 2 or 4: Pairwise == 1, Install == 0, Ack == 0, MIC == 1 */
 
 			if ((packet[z + 6] & 0x08) != 0 && (packet[z + 6] & 0x40) == 0
-				&& (packet[z + 6] & 0x80) == 0
-				&& (packet[z + 5] & 0x01) != 0)
+				&& (packet[z + 6] & 0x80) == 0 && (packet[z + 5] & 0x01) != 0)
 			{
 				if (memcmp(&packet[z + 17], ZERO, 32) != 0)
 				{
@@ -754,8 +759,7 @@ static int packet_recv(unsigned char * packet, size_t length)
 			/* frame 3: Pairwise == 1, Install == 1, Ack == 1, MIC == 1 */
 
 			if ((packet[z + 6] & 0x08) != 0 && (packet[z + 6] & 0x40) != 0
-				&& (packet[z + 6] & 0x80) != 0
-				&& (packet[z + 5] & 0x01) != 0)
+				&& (packet[z + 6] & 0x80) != 0 && (packet[z + 5] & 0x01) != 0)
 			{
 				if (memcmp(&packet[z + 17], ZERO, 32) != 0)
 				{
@@ -1225,7 +1229,7 @@ int main(int argc, char * argv[])
 
 	dev.fd_rtc = -1;
 
-/* open the RTC device if necessary */
+	/* open the RTC device if necessary */
 
 #if defined(__i386__)
 #if defined(linux)

@@ -12,18 +12,28 @@ on:
       - manpages/**
       - patches/**
       - test/**
+      - '.coverityignore'
+      - '.github/workflows/gentoo.yml'
       - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/almalinux.yml'
+      - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-release-ready.yml'
+      - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
       - '.github/workflows/macos.yml'
+      - '.github/workflows/manual.yml'
+      - '.github/workflows/markdown-link.yml'
       - '.github/workflows/netbsd.yml'
       - '.github/workflows/openbsd.yml'
       - '.github/workflows/pvs-studio.yml'
+      - '.github/workflows/scanbuild.yml'
       - '.github/workflows/style.yml'
       - '.github/workflows/windows.yml'
       - '.vscode/**'
@@ -44,6 +54,7 @@ on:
       - 'README'
       - 'README.md'
       - 'SECURITY.md'
+      - 'scripts/airmon-ng.*'
 
   pull_request:
     branches: [ master ]
@@ -53,19 +64,28 @@ on:
       - manpages/**
       - patches/**
       - test/**
+      - '.coverityignore'
+      - '.github/workflows/gentoo.yml'
       - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-release-ready.yml'
+      - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
       - '.github/workflows/macos.yml'
+      - '.github/workflows/manual.yml'
+      - '.github/workflows/markdown-link.yml'
       - '.github/workflows/netbsd.yml'
       - '.github/workflows/openbsd.yml'
       - '.github/workflows/pvs-studio.yml'
+      - '.github/workflows/scanbuild.yml'
       - '.github/workflows/style.yml'
       - '.github/workflows/windows.yml'
       - '.vscode/**'
@@ -86,6 +106,7 @@ on:
       - 'README'
       - 'README.md'
       - 'SECURITY.md'
+      - 'scripts/airmon-ng.*'
 
 env:
   LANG: en_US.UTF-8
@@ -115,7 +136,7 @@ jobs:
           fetch-depth: 750
           submodules: 'recursive'
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         id: cache
         if: ${{ env.ACT != 'true' }}
         with:
@@ -200,7 +221,7 @@ jobs:
           fetch-depth: 750
           submodules: 'recursive'
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         id: cache
         if: ${{ env.ACT != 'true' }}
         with:

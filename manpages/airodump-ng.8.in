@@ -29,17 +29,23 @@ It will record all beacons into the cap file. By default it only records one bea
 .I -u <secs>, --update <secs>
 Delay <secs> seconds delay between display updates (default: 1 second). Useful for slow CPU.
 .TP
-.I --showack
+.I -A, --showack
 Prints ACK/CTS/RTS statistics. Helps in debugging and general injection optimization. It is indication if you inject, inject too fast, reach the AP, the frames are valid encrypted frames. Allows one to detect "hidden" stations, which are too far away to capture high bitrate frames, as ACK frames are sent at 1Mbps.
 .TP
 .I -h
 Hides known stations for \-\-showack.
 .TP
-.I --berlin <secs>
+.I -f <msecs>
+Time in milliseconds between hopping channels.
+.TP
+.I -B <secs>, --berlin <secs>
 Time before removing the AP/client from the screen when no more frames are received (Default: 120 seconds). See airodump-ng source for the history behind this option ;).
 .TP
 .I -c <channel>[,<channel>[,...]], --channel <channel>[,<channel>[,...]]
 Indicate the channel(s) to listen to. By default airodump-ng hops on all 2.4GHz channels.
+.TP
+.I -O, --ignore-other-chans
+Ignore access points on channels other than the selected one(s). Requires \-\-channel (or \-c).
 .TP
 .I -C <freq>[,<freq>[,...]]
 Indicates the frequencies to listen to. By default airodump-ng hops on all 2.4GHz channels.
@@ -77,11 +83,11 @@ Display APs uptime obtained from its beacon timestamp.
 .I -W, --wps
 Display a WPS column with WPS version, config method(s), AP Setup Locked obtained from APs beacon or probe response (if any).
 .TP
-.I --output-format <formats>
+.I -o <formats>, --output-format <formats>
 Define the formats to use (separated by a comma). Possible values are: pcap, ivs, csv, gps, kismet, netxml. The default values are: pcap, csv, kismet, kismet-newcore.
 \(aqpcap\(aq is for recording a capture in pcap format, \(aqivs\(aq is for ivs format (it is a shortcut for --ivs). \(aqcsv\(aq will create an airodump-ng CSV file, \(aqkismet\(aq will create a kismet csv file and \(aqkismet-newcore\(aq will create the kismet netxml file. \(aqgps\(aq is a shortcut for --gps.
 .br
-Theses values can be combined with the exception of ivs and pcap.
+These values can be combined with the exception of ivs and pcap.
 .TP
 .I -I <seconds>, --write-interval <seconds>
 Output file(s) write interval for CSV, Kismet CSV and Kismet NetXML in seconds (minimum: 1 second). By default: 5 seconds. Note that an interval too small might slow down airodump\-ng.
@@ -98,21 +104,30 @@ Removes the message that says \(aqfixed channel <interface>: -1\(aq.
 It will only show networks matching the given encryption. Note that WPA is a shortcut for WPA1, WPA2 and WPA3. May be specified more than once: \(aq\-t OPN \-t WPA2\(aq
 .TP
 .I -d <bssid>, --bssid <bssid>
-It will only show networks, matching the given bssid.
+It will only show networks, matching the given bssid. May be specified more than once: \(aq\-d 0D:F7:E2:61:C6:6D \-d 5B:62:A1:83:00:A8\(aq
 .TP
 .I -m <mask>, --netmask <mask>
 It will only show networks, matching the given bssid ^ netmask combination. Need \-\-bssid (or \-d) to be specified.
 .TP
 .I -a
-It will only show associated clients.
+It will only show associated stations. Using in combination with -z won't display any of the stations.
+.TP
+.I -z
+It will only show unassociated stations. Using in combination with -a won't display any of the stations.
 .TP
 .I -n <int>, --min-packets <int>
-The minimum number of packets received by an AP before displaying it.
+The minimum number of packets received by an AP before displaying it. Default value: 2.
 .TP
-.I -N, --essid
-Filter APs by ESSID. Can be used several times to match a set of ESSID.
+.I -p <int>, --min-power <int>
+Filter out APs with PWR less than the specified value (default value: -120).
 .TP
-.I -R, --essid-regex
+.I -q <int>, --min-rxq <int>
+Filter out APs with RXQ less than the specified value (default value: 0). Valid range: 0..100. Requires --channel (or -c) or -C.
+.TP
+.I -N <essid>, --essid <essid>
+Filter APs by ESSID. May be specified more than once: \(aq\-N AP1 \-N AP2\(aq
+.TP
+.I -R <regex>, --essid-regex <regex>
 Filter APs by ESSID using a regular expression.
 .SH INTERACTION
 .PP
