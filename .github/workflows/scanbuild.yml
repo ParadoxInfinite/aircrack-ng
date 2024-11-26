@@ -20,13 +20,16 @@ on:
       - '.github/ISSUE_TEMPLATE/**'
       - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-actions-updates.yml'
       - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
+      - '.github/workflows/devcontainer.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/gcc.yml'
       - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
@@ -40,7 +43,9 @@ on:
       - '.github/workflows/style.yml'
       - '.github/workflows/windows.yml'
       - '.vscode/**'
+      - '.devcontainer/**'
       - '.clang-format'
+      - '.codespellrc'
       - '.editorconfig'
       - '.gitignore'
       - '.pre-commit-config.yaml'
@@ -65,19 +70,19 @@ jobs:
     steps:
       - 
         name: Git Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       -
         name: Add LLVM repo
-        uses: myci-actions/add-deb-repo@10
+        uses: myci-actions/add-deb-repo@11
         with:
-          repo: deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-16 main
+          repo: deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-18 main
           repo-name: llvm
           keys-asc: https://apt.llvm.org/llvm-snapshot.gpg.key
       -
         name: Install required tools
         run: |
               sudo apt-get update
-              sudo apt-get install clang-16 clang-tools-16 build-essential autoconf automake libtool \
+              sudo apt-get install clang-18 clang-tools-18 build-essential autoconf automake libtool \
                           pkg-config libnl-3-dev libnl-genl-3-dev libssl-dev ethtool \
                           shtool rfkill zlib1g-dev libpcap-dev libsqlite3-dev libpcre2-dev \
                           libhwloc-dev libcmocka-dev hostapd wpasupplicant tcpdump screen \
@@ -89,9 +94,9 @@ jobs:
           SCANBUILD_DIR=/tmp/scanbuild
           CPUS=$(nproc)
           autoreconf -vif
-          CC=clang-16 CXX=clang++-16 ./configure --with-experimental --enable-maintainer-mode || { cat config.log; exit 1; }
+          CC=clang-18 CXX=clang++-18 ./configure --with-experimental --enable-maintainer-mode || { cat config.log; exit 1; }
           mkdir "${SCANBUILD_DIR}"
-          scan-build-16 -sarif -o "${SCANBUILD_DIR}" -enable-checker alpha.security.taint.TaintPropagation -enable-checker alpha.security.ArrayBoundV2 make -j ${CPUS}
+          scan-build-18 -sarif -o "${SCANBUILD_DIR}" -enable-checker alpha.security.taint.TaintPropagation -enable-checker alpha.security.ArrayBoundV2 make -j ${CPUS}
           echo "directory=${SCANBUILD_DIR}/$(ls -1 ${SCANBUILD_DIR})" >> $GITHUB_OUTPUT
       -
         name: Merge SARIF files
@@ -102,7 +107,7 @@ jobs:
       -
         name: Upload SARIF file
         if: github.event_name != 'pull_request'
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif
           category: scanbuild
@@ -110,7 +115,7 @@ jobs:
       -
         name: Archive artifacts (Pull request)
         if: github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: scanbuild-pr-${{ github.event.number }}
           path: results.sarif
@@ -118,7 +123,7 @@ jobs:
       -
         name: Archive artifacts (Push)
         if: github.event_name != 'pull_request'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: scanbuild
           path: results.sarif

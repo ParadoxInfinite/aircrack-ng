@@ -8,6 +8,7 @@
 [![Alpine Linux](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/alpine.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/alpine.yml)
 [![DragonFlyBSD CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/dragonflybsd.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/dragonflybsd.yml)
 [![FreeBSD CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/freebsd.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/freebsd.yml)
+[![Gentoo CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/gentoo.yml/badge.svg)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/gentoo.yml)
 [![Kali Linux CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/kali.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/kali.yml)
 [![Linux CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux.yml)
 [![Linux PCRE CI](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux-pcre.yml/badge.svg?event=push)](https://github.com/aircrack-ng/aircrack-ng/actions/workflows/linux-pcre.yml)
@@ -28,7 +29,8 @@
 
 ### Repository versions
 
-![Arch Linux package](https://img.shields.io/archlinux/v/community/x86_64/aircrack-ng)
+![Arch Linux package](https://img.shields.io/archlinux/v/extra/x86_64/aircrack-ng)
+![Debian package](https://img.shields.io/debian/v/aircrack-ng/stable?label=debian%20stable)
 ![Debian package](https://img.shields.io/debian/v/aircrack-ng/testing?label=debian%20testing)
 ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/aircrackng/git?color=blue&label=Docker%20Tag%20%7C%20git)
 ![Fedora package](https://img.shields.io/fedora/v/aircrack-ng)
@@ -38,7 +40,8 @@
 ![Ubuntu package](https://img.shields.io/ubuntu/v/aircrack-ng/jammy?label=Ubuntu%2022.04)
 ![Ubuntu package](https://img.shields.io/ubuntu/v/aircrack-ng/kinetic?label=Ubuntu%2022.10)
 ![Ubuntu package](https://img.shields.io/ubuntu/v/aircrack-ng/lunar?label=Ubuntu%2023.04)
-
+![Ubuntu package](https://img.shields.io/ubuntu/v/aircrack-ng/mantic?label=Ubuntu%2023.10)
+![Ubuntu package](https://img.shields.io/ubuntu/v/aircrack-ng/noble?label=Ubuntu%2024.04)
 
 ## Description
 
@@ -186,6 +189,12 @@ is as follows:
 #### MSYS2
 
     pacman -Sy autoconf automake-wrapper libtool msys2-w32api-headers msys2-w32api-runtime gcc pkg-config git python openssl-devel openssl libopenssl msys2-runtime-devel gcc binutils make pcre2-devel libsqlite-devel
+
+### GNU/Hurd
+
+#### Debian
+
+    apt-get install build-essential autoconf automake libtool pkg-config libssl-dev shtool zlib1g-dev libpcap-dev libsqlite3-dev libpcre2-dev libhwloc-dev libcmocka-dev screen expect libbsd-dev
 
 ## Docker containers
 

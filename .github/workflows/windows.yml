@@ -16,13 +16,16 @@ on:
       - '.github/ISSUE_TEMPLATE/**'
       - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-actions-updates.yml'
       - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
+      - '.github/workflows/devcontainer.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/gcc.yml'
       - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
@@ -36,6 +39,7 @@ on:
       - '.github/workflows/scanbuild.yml'
       - '.github/workflows/style.yml'
       - '.vscode/**'
+      - '.devcontainer/**'
       - '.clang-format'
       - '.editorconfig'
       - '.gitignore'
@@ -67,13 +71,16 @@ on:
       - '.github/ISSUE_TEMPLATE/**'
       - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-actions-updates.yml'
       - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
+      - '.github/workflows/devcontainer.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/gcc.yml'
       - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
@@ -87,6 +94,7 @@ on:
       - '.github/workflows/scanbuild.yml'
       - '.github/workflows/style.yml'
       - '.vscode/**'
+      - '.devcontainer/**'
       - '.clang-format'
       - '.editorconfig'
       - '.gitignore'
@@ -118,10 +126,10 @@ jobs:
     steps:
       - run: git config --global core.autocrlf input
       - run: git config --global core.eol lf
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Caching Cygwin fails due to /dev files and symlinks, sad :(
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: cache
         with:
           path: |
@@ -131,7 +139,7 @@ jobs:
           restore-keys: ${{ runner.os }}-cygwin-64bit-
 
       - name: Set up Cygwin
-        uses: cygwin/cygwin-install-action@v3
+        uses: cygwin/cygwin-install-action@v4
         with:
           platform: x64
           install-dir: C:\tools\cygwin
@@ -270,7 +278,7 @@ jobs:
           C:\tools\cygwin\bin\bash.exe -e -l -c "ccache -s"
 
       - name: Archive 64-bit artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: 64bit
           path: |
@@ -289,7 +297,7 @@ jobs:
       - run: git config --global core.autocrlf input
       - run: git config --global core.eol lf
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Checkout GUI source code
         shell: pwsh
@@ -300,7 +308,7 @@ jobs:
           Pop-Location
 
       - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.0.2
+        uses: microsoft/setup-msbuild@v1.1
 
       - name: Build
         shell: pwsh
@@ -310,7 +318,7 @@ jobs:
           Pop-Location
 
       - name: Archive GUI artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: gui
           path: |
@@ -326,10 +334,10 @@ jobs:
       - run: git config --global core.autocrlf input
       - run: git config --global core.eol lf
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Cygwin
-        uses: cygwin/cygwin-install-action@v3
+        uses: cygwin/cygwin-install-action@v4
         with:
           platform: x64
           install-dir: C:\tools\cygwin
@@ -348,13 +356,13 @@ jobs:
           echo "unix_path=${unix_path}" >> $GITHUB_OUTPUT
 
       - name: Download Cygwin 64-bit artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: 64bit
           path: 64bit
 
       - name: Download GUI artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: gui
           path: gui
@@ -388,7 +396,7 @@ jobs:
           "@ | & $bash --login -o errexit -o nounset -o pipefail -o igncr
 
       - name: Save package artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-windows
           path: |

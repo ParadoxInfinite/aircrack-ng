@@ -4,22 +4,23 @@ FROM ${IMAGE_BASE} AS builder
 
 # Install dependencies for building
 COPY docker_package_install.sh /
-RUN sh /docker_package_install.sh builder
+RUN chmod +x docker_package_install.sh && \
+	 /docker_package_install.sh builder
 
 # Build Aircrack-ng
 # hadolint ignore=DL3059
 RUN mkdir -p /aircrack-ng /output
 COPY . /aircrack-ng
 WORKDIR /aircrack-ng
-# hadolint ignore=SC2006
+# hadolint ignore=SC2006,SC2086,DL4006
 RUN set -x \
 	&& make distclean || : && \
 		autoreconf -vif && \
 		set -e; \
 			./configure --with-experimental --with-ext-scripts --enable-maintainer-mode --prefix=/usr/local && \
-			make -j3 && \
+			make -j$(nproc) && \
 		set +e && \
-			if ! make check -j3; then \
+			if ! make check -j$(nproc); then \
 				echo "Processor: $(uname -m)"; \
 				for file in `grep -l "(exit status: [1-9]" test/*.log`; do \
 					echo "[*] Test ${file}:"; \
@@ -28,6 +29,8 @@ RUN set -x \
 				exit 1; \
 			fi && \
 		set -e && \
+			export PYTHONPATH="/output/usr/local/lib/python$(python3 --version | awk '{print $2}' | awk -F. '{print $1 "." $2}')/site-packages/" && \
+			mkdir -p ${PYTHONPATH} && \
 			make install DESTDIR=/output
 
 # Stage 2
@@ -45,8 +48,8 @@ COPY --from=builder /output/usr /output
 RUN set -x && \
 	[ -d /usr/local/share/man ] || \
 		mkdir -p /usr/local/share/man
-RUN mv /output/local/share/man/* /usr/local/share/man/ && \
-	rmdir /output/local/share/man/ && \
+RUN cp -r /output/local/share/man/* /usr/local/share/man/ && \
+	rm -rf /output/local/share/man && \
 	cp -r /output/* /usr/ && \
 	rm -rf /output
 

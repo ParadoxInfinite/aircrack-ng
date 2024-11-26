@@ -11,13 +11,16 @@ on:
       - '.github/ISSUE_TEMPLATE/**'
       - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-actions-updates.yml'
       - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
+      - '.github/workflows/devcontainer.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/gcc.yml'
       - '.github/workflows/irc.yml'
       - '.github/workflows/linux.yml'
       - '.github/workflows/linux-pcre.yml'
@@ -36,6 +39,7 @@ on:
       - 'manpages/**'
       - 'patches/**'
       - '.clang-format'
+      - '.codespellrc'
       - '.editorconfig'
       - '.gitignore'
       - '.pre-commit-config.yaml'
@@ -59,13 +63,16 @@ on:
       - '.github/ISSUE_TEMPLATE/**'
       - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-actions-updates.yml'
       - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
+      - '.github/workflows/devcontainer.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/gcc.yml'
       - '.github/workflows/irc.yml'
       - '.github/workflows/linux.yml'
       - '.github/workflows/linux-pcre.yml'
@@ -105,7 +112,7 @@ jobs:
     steps:
       - 
         name: Git Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - 
         name: Lint Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
@@ -132,13 +139,13 @@ jobs:
     steps:
       -
         name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
       -
         name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
       -
         name: Build on linux/amd64
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           platforms: linux/amd64
           build-args: IMAGE_BASE=kalilinux/kali-rolling:latest

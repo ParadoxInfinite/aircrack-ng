@@ -18,13 +18,16 @@ on:
       - '.github/ISSUE_TEMPLATE/**'
       - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-actions-updates.yml'
       - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
+      - '.github/workflows/devcontainer.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/gcc.yml'
       - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
@@ -68,13 +71,16 @@ on:
       - '.github/ISSUE_TEMPLATE/**'
       - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-actions-updates.yml'
       - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
+      - '.github/workflows/devcontainer.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/gcc.yml'
       - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
@@ -115,7 +121,7 @@ jobs:
     name: Clang-Format
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: |

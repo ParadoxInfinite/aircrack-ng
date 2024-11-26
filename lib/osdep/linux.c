@@ -72,6 +72,7 @@
 #include "common.h"
 #include "channel.h"
 #include "aircrack-ng/defs.h"
+#include "aircrack-ng/support/local_limits.h"
 
 #ifdef CONFIG_LIBNL
 struct nl80211_state state;
@@ -2486,7 +2487,6 @@ EXPORT int get_battery_state(void)
 		char battery_info[24 + sizeof(this_battery->d_name) + 1];
 		int rate = 1, remain = 0;
 		int batno = 0;
-		static int info_timer = 0;
 		int batt_full_capacity[3];
 		linux_acpi = 1;
 		ac_adapters = opendir("/proc/acpi/ac_adapter");
@@ -2581,7 +2581,6 @@ EXPORT int get_battery_state(void)
 				batteryTime += (int) ((((float) remain) / rate) * 3600);
 			batno++;
 		}
-		info_timer++;
 
 		closedir(batteries);
 	}

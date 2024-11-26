@@ -16,13 +16,16 @@ on:
       - '.github/ISSUE_TEMPLATE/**'
       - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-actions-updates.yml'
       - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
+      - '.github/workflows/devcontainer.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/gcc.yml'
       - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
@@ -36,7 +39,9 @@ on:
       - '.github/workflows/style.yml'
       - '.github/workflows/windows.yml'
       - '.vscode/**'
+      - '.devcontainer/**'
       - '.clang-format'
+      - '.codespellrc'
       - '.editorconfig'
       - '.gitignore'
       - '.pre-commit-config.yaml'
@@ -67,13 +72,16 @@ on:
       - '.github/ISSUE_TEMPLATE/**'
       - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-actions-updates.yml'
       - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/codespell.yml'
       - '.github/workflows/coverity.yml'
+      - '.github/workflows/devcontainer.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/gcc.yml'
       - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
@@ -87,7 +95,9 @@ on:
       - '.github/workflows/style.yml'
       - '.github/workflows/windows.yml'
       - '.vscode/**'
+      - '.devcontainer/**'
       - '.clang-format'
+      - '.codespellrc'
       - '.editorconfig'
       - '.gitignore'
       - '.pre-commit-config.yaml'
@@ -113,7 +123,7 @@ env:
 
 jobs:
   openbsd:
-    runs-on: macos-12
+    runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
@@ -127,14 +137,14 @@ jobs:
 
     name: OpenBSD ${{ matrix.compiler.cc }} using ${{ matrix.flags.name }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 750
           submodules: 'recursive'
 
       - name: Build with ${{ matrix.compiler.cc }} using ${{ matrix.flags.name }}
         id: build
-        uses: vmactions/openbsd-vm@v0
+        uses: vmactions/openbsd-vm@v1
         with:
           envs: 'LANG TZ MAKE'
           usesh: true

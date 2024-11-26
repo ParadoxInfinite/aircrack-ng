@@ -17,12 +17,15 @@ on:
       - '.github/ISSUE_TEMPLATE/**'
       - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-actions-updates.yml'
       - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/coverity.yml'
+      - '.github/workflows/devcontainer.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/gcc.yml'
       - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
@@ -34,6 +37,7 @@ on:
       - '.github/workflows/openbsd.yml'
       - '.github/workflows/windows.yml'
       - '.vscode/**'
+      - '.codespellrc'
       - '.gitignore'
       - '.pre-commit-config.yaml'
       - 'AC_VERSION.in'
@@ -64,12 +68,15 @@ on:
       - '.github/ISSUE_TEMPLATE/**'
       - '.github/workflows/almalinux.yml'
       - '.github/workflows/alpine.yml'
+      - '.github/workflows/check-actions-updates.yml'
       - '.github/workflows/check-release-ready.yml'
       - '.github/workflows/coverity.yml'
+      - '.github/workflows/devcontainer.yml'
       - '.github/workflows/docker.yml'
       - '.github/workflows/docker-release.yml'
       - '.github/workflows/dragonflybsd.yml'
       - '.github/workflows/freebsd.yml'
+      - '.github/workflows/gcc.yml'
       - '.github/workflows/irc.yml'
       - '.github/workflows/kali.yml'
       - '.github/workflows/linux.yml'
@@ -81,6 +88,7 @@ on:
       - '.github/workflows/openbsd.yml'
       - '.github/workflows/windows.yml'
       - '.vscode/**'
+      - '.codespellrc'
       - '.gitignore'
       - '.pre-commit-config.yaml'
       - 'AC_VERSION.in'
@@ -109,7 +117,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         env:
           PVS_STUDIO_NAME: ${{ secrets.PvsStudioName }}
           PVS_STUDIO_KEY: ${{ secrets.PvsStudioKey }}
@@ -233,7 +241,7 @@ jobs:
           PVS_STUDIO_NAME: ${{ secrets.PvsStudioName }}
           PVS_STUDIO_KEY: ${{ secrets.PvsStudioKey }}
         if: ${{ env.ACT != 'true' && env.PVS_STUDIO_NAME != null && env.PVS_STUDIO_KEY != null }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pvs-analysis-report
           path: pvs-report
